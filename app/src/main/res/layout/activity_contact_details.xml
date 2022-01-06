@@ -19,7 +19,7 @@
             android:layout_alignParentLeft="true"
             android:text="BACK"/>
 
-        <Button android:id="@+id/contact_details_save_information_btn"
+        <Button android:id="@+id/contact_details_commit_save_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -95,12 +95,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Contact Category"/>
+            android:text="Contact Type"/>
 
         <Spinner android:id="@+id/contact_details_contact_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
+        <Button android:id="@+id/contact_details_commit_delete_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete Contact"/>
 
 
     </LinearLayout>

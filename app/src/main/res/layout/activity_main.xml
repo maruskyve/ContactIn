@@ -22,9 +22,12 @@
             android:textColor="@color/white"/>
     </LinearLayout>
 
-    <ListView
+    <LinearLayout android:id="@+id/main_fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"
+        android:layout_below="@id/home_top_bar"
+        android:orientation="vertical">
+    </LinearLayout>
 
     <LinearLayout android:id="@+id/home_navigation_bar"
         android:layout_width="match_parent"
@@ -32,16 +35,16 @@
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">
 
-        <Button
+        <Button android:id="@+id/main_commit_view_contact_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="contact list"/>
 
-        <Button
+        <Button android:id="@+id/main_commit_view_homepage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="right"/>
+            android:text="Homepage"/>
     </LinearLayout>
 </RelativeLayout>

@@ -80,9 +80,13 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
   `user_name` varchar(70) DEFAULT NULL,
-  `user_gender` enum('M','F') DEFAULT NULL,
-  `user_phone_number` varchar(15) DEFAULT NULL,
   `user_email` varchar(70) DEFAULT NULL,
+  `user_phone_number` varchar(15) DEFAULT NULL,
+  `user_password` varchar(30) DEFAULT NULL,
+  `user_fname` varchar(35) DEFAULT NULL,
+  `user_lname` varchar(35) DEFAULT NULL,
+  `user_gender` enum('M','F') DEFAULT NULL,
+  `user_ppicture` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -93,6 +97,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (62,'maruf','  jolajsd@dmladsf','nusdfsf908955','','jojadu9021','iasdu90j9uf0s VVRSGF','M',''),(72,'123','123','123','','ddfsfs','dfsf','M',''),(398,'hedef','hedef@email.com','1290310238','hedef','hedef','fedeh','M','picture.jpg'),(9231,'username','useremail','userphone','userpassword','userfname','userlname','','userppicture'),(25473,'dsfv','sdfsf','asdad','M','dfgd','cvbcb','','picture.jpg'),(52674,'123','131','','M','','321313fvsg fghfngf hdfhdfhf hrf','','picture.jpg');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -105,4 +110,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-04 10:06:55
+-- Dump completed on 2022-01-06 19:52:15

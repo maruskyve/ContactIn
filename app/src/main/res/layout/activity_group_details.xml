@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <Button
+        <Button android:id="@+id/group_details_commit_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="BACK"

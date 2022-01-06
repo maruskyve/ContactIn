@@ -7,87 +7,133 @@
     android:orientation="vertical"
     tools:context=".UserRegister">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button android:id="@+id/register_back_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="back"/>
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Account Registration"/>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Phone Number"/>
-
-    <EditText android:id="@+id/register_phone_number"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="enter phone number . . ."/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email"/>
-
-    <EditText android:id="@+id/register_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="enter email . . ."/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="First Name"/>
-
-    <EditText android:id="@+id/register_fname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="enter first name . . ."/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Last Name"/>
-
-    <EditText android:id="@+id/register_lname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="enter last name . . ."/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Gender"/>
-
-    <RadioGroup android:id="@+id/register_gender_rg"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <RadioButton
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Male"/>
+            android:orientation="vertical">
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Female"/>
-    </RadioGroup>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button android:id="@+id/register_commit_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="back"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Account Registration"/>
 
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Username"/>
 
-    <Button android:id="@+id/register_commit_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Register Now"/>
+            <EditText android:id="@+id/register_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="enter username . . ."/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password"/>
+
+            <EditText android:id="@+id/register_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="enter password . . ."/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone Number"/>
+
+            <EditText android:id="@+id/register_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="enter phone number . . ."/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"/>
+
+            <EditText android:id="@+id/register_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="enter email . . ."/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="First Name"/>
+
+            <EditText android:id="@+id/register_fname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="enter first name . . ."/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Last Name"/>
+
+            <EditText android:id="@+id/register_lname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="enter last name . . ."/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gender"/>
+
+            <RadioGroup android:id="@+id/register_gender_rg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Male"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Female"/>
+            </RadioGroup>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@mipmap/ic_launcher"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|bottom"
+                    android:text="Pic"/>
+            </FrameLayout>
+
+
+            <Button android:id="@+id/register_commit_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Register Now"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>
