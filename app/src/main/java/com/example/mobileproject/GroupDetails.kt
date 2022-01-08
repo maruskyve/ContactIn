@@ -12,7 +12,6 @@ class GroupDetails : AppCompatActivity() {
         setContentView(R.layout.activity_group_details)
         supportActionBar?.hide() // Hide action bar
 
-        Toast.makeText(this, "${SavedFragment().getFragment()}", Toast.LENGTH_SHORT).show()
         group_details_commit_back.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
         }

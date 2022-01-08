@@ -35,32 +35,32 @@ class UserRegister : AppCompatActivity() {
     private fun registerValidation() {  // temp - Checking registration data entered
         // Value prep
         val idV = (0..100000).random().toString()
+        val phoneNumberV = register_phone_number.text.toString()
+        val emailV = register_email.text.toString()
+        val passwordV = register_password.text.toString()
         val fnameV = register_fname.text.toString()
         val lnameV = register_lname.text.toString()
         val usernameV = register_username.text.toString()
         var genderV = if (register_gender_rg.checkedRadioButtonId > 0)  // Error handler: unwanted rb id
             findViewById<RadioButton>(register_gender_rg.checkedRadioButtonId).text.toString() else ""
-        val phoneNumberV = register_phone_number.text.toString()
-        val emailV = register_email.text.toString()
-        val passwordV = register_password.text.toString()
         val pPictureV = "picture.jpg"
         genderV = if (genderV == "Male") "M" else "F"
 
-        // INSERT DATA TO DATABASE (STATUS: WORK WO PPICTURE)
+        // INSERT DATA TO DATABASE TABLE (STATUS: WORK WO PPICTURE)
         fun createAccount() {
             val loading = ProgressDialog(this)
-            loading.setMessage("Menambahkan data.......")
+            loading.setMessage("Adding Data . . .")
             loading.show()
 
             AndroidNetworking.post(ApiEndPoint.USER_CREATE_ACCOUNT)
                 .addBodyParameter("user_id", idV)
-                .addBodyParameter("user_fname", fnameV)
-                .addBodyParameter("user_lname", lnameV)
                 .addBodyParameter("user_name", usernameV)
-                .addBodyParameter("user_gender", genderV)
                 .addBodyParameter("user_phone_number", phoneNumberV)
                 .addBodyParameter("user_email", emailV)
                 .addBodyParameter("user_password", passwordV)
+                .addBodyParameter("user_fname", fnameV)
+                .addBodyParameter("user_lname", lnameV)
+                .addBodyParameter("user_gender", genderV)
                 .addBodyParameter("user_ppicture", pPictureV)
                 .setPriority(Priority.MEDIUM)
                 .build()

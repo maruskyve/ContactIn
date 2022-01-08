@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MobileProject</string>
+    <string name="app_name">ContactIn</string>
     <string-array name="contact_type">
         <item>Family</item>
         <item>Friend</item>

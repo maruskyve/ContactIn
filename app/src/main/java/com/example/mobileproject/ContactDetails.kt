@@ -1,11 +1,20 @@
 package com.example.mobileproject
 
+import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import com.androidnetworking.AndroidNetworking
+import com.androidnetworking.common.Priority
+import com.androidnetworking.error.ANError
+import com.androidnetworking.interfaces.JSONObjectRequestListener
+import com.example.mobileproject.networking.ApiEndPoint
 import kotlinx.android.synthetic.main.activity_contact_details.*
+import kotlinx.android.synthetic.main.activity_create_contact.*
+import org.json.JSONObject
 
 class ContactDetails : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +35,7 @@ class ContactDetails : AppCompatActivity() {
 
     }
 
-    private fun inputInit() {  // Prepare required data every non single input data
+    private fun inputInit() {  // Initializer for multi choice input
         val contactTypes = resources.getStringArray(R.array.contact_type)
 
         if (contact_details_contact_type != null) {
@@ -38,20 +47,94 @@ class ContactDetails : AppCompatActivity() {
 
     }
 
-    private fun saveDetails() {  // Save any change of contact details.
-        // Possible action: UPDATE, DELETE
-        val datas = "FName = ${contact_details_fname.text}\n" +
-                "LName = ${contact_details_lname.text}\n" +
-                "Email = ${contact_details_email.text}\n" +
-                "Phone = ${contact_details_phone_number.text}\n" +
-                "Type = ${contact_details_contact_type.selectedItem}" +
-                "Image = !configured"
-        Toast.makeText(this, datas, Toast.LENGTH_SHORT).show()
+    private fun saveDetails() {  // Save any change of contact details (UPDATE).
+        // Contact UPDATE details data prep
+        val idV = "320"  // Current contact id
+        val phoneNumberV = contact_details_phone_number.text.toString()
+        val emailV = contact_details_email.text.toString()
+        val fnameV = contact_details_fname.text.toString()
+        val lnameV = contact_details_lname.text.toString()
+        val ppictureV = "updatedPicture.jpg"
+        val starsV = "1"
+        val fkContactTypeIdV = "2"
+
+        fun processRequest() {
+            // Status info
+            val loading = ProgressDialog(this)
+            loading.setMessage("Menambahkan data.......")
+            loading.show()
+
+            AndroidNetworking.post(ApiEndPoint.CONTACT_UPDATE_CONTACT)
+                .addBodyParameter("contact_id", idV)
+                .addBodyParameter("contact_phone_number", phoneNumberV)
+                .addBodyParameter("contact_email", emailV)
+                .addBodyParameter("contact_fname", fnameV)
+                .addBodyParameter("contact_lname", lnameV)
+                .addBodyParameter("contact_ppicture", ppictureV)
+                .addBodyParameter("contact_stars", starsV)
+                .addBodyParameter("fk_contact_type_id", fkContactTypeIdV)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(object : JSONObjectRequestListener {
+                    override fun onResponse(response: JSONObject?) {
+                        loading.dismiss()
+                        Toast.makeText(
+                            applicationContext,
+                            response?.getString("message"),
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                        if (response?.getString("message")?.contains("successfully")!!) {
+                            this@ContactDetails.finish()
+                        }
+                    }
+
+                    override fun onError(anError: ANError?) {
+                        loading.dismiss()
+                        Log.d("ON ERROR", anError?.errorDetail.toString())
+                        Toast.makeText(applicationContext, "Failure", Toast.LENGTH_SHORT).show()
+                    }
+                })
+        }
+        processRequest()
     }
 
-    private fun deleteContact() {  // Delete current displayed contact from database table
-        Toast.makeText(this, "Deleting Contact [ID]", Toast.LENGTH_SHORT).show()
+    private fun deleteContact() {  // Delete current contact based on id (DELETE).
+        // Contact DELETE data prep
+        val idV = "60"  // Current contact id
 
+        // Status info
+        val loading = ProgressDialog(this)
+        loading.setMessage("Menambahkan data.......")
+        loading.show()
+
+        fun processRequest() {
+            AndroidNetworking.post(ApiEndPoint.CONTACT_DELETE_CONTACT)
+                .addBodyParameter("contact_id", idV)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(object : JSONObjectRequestListener {
+                    override fun onResponse(response: JSONObject?) {
+                        loading.dismiss()
+                        Toast.makeText(
+                            applicationContext,
+                            response?.getString("message"),
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                        if (response?.getString("message")?.contains("successfully")!!) {
+                            this@ContactDetails.finish()
+                        }
+                    }
+
+                    override fun onError(anError: ANError?) {
+                        loading.dismiss()
+                        Log.d("ON ERROR", anError?.errorDetail.toString())
+                        Toast.makeText(applicationContext, "Failure", Toast.LENGTH_SHORT).show()
+                    }
+                })
+        }
+        processRequest()
         startActivity(Intent(this, MainActivity::class.java))
     }
 }

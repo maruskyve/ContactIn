@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ContactDetails">
+    tools:context=".CreateContact">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         android:orientation="horizontal"
         android:background="@color/black">
 
-        <Button android:id="@+id/contact_details_back_btn"
+        <Button android:id="@+id/create_contact_back_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -23,13 +23,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Contact Details"
+            android:text="Create New Contact"
             android:textColor="@color/white"/>
-        <Button android:id="@+id/contact_details_commit_save_details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="save"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -63,7 +58,7 @@
             android:layout_height="wrap_content"
             android:text="First Name"/>
 
-        <EditText android:id="@+id/contact_details_fname"
+        <EditText android:id="@+id/create_contact_fname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="First Name . . ."/>
@@ -73,7 +68,7 @@
             android:layout_height="wrap_content"
             android:text="Last Name"/>
 
-        <EditText android:id="@+id/contact_details_lname"
+        <EditText android:id="@+id/create_contact_lname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Last Name . . ."/>
@@ -83,7 +78,7 @@
             android:layout_height="wrap_content"
             android:text="Phone Number"/>
 
-        <EditText android:id="@+id/contact_details_phone_number"
+        <EditText android:id="@+id/create_contact_phone_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Phone . . ."/>
@@ -93,7 +88,7 @@
             android:layout_height="wrap_content"
             android:text="Email"/>
 
-        <EditText android:id="@+id/contact_details_email"
+        <EditText android:id="@+id/create_contact_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email . . ."/>
@@ -103,13 +98,14 @@
             android:layout_height="wrap_content"
             android:text="Contact Type"/>
 
-        <Spinner android:id="@+id/contact_details_contact_type"
+        <Spinner android:id="@+id/create_contact_contact_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <Button android:id="@+id/contact_details_commit_delete_contact"
+        <Button android:id="@+id/create_contact_commit_save_contact"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delete Contact"/>
+            android:text="Save"/>
+
     </LinearLayout>
 </LinearLayout>

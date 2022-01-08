@@ -39,13 +39,18 @@
         android:layout_height="wrap_content"
         android:hint="enter password . . ."/>
 
-    <Button android:id="@+id/login_commit_btn"
+    <Button android:id="@+id/login_commit_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login Now"/>
 
-    <Button android:id="@+id/account_register"
+    <Button android:id="@+id/login_commit_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create New Account"/>
+
+    <Button android:id="@+id/login_commit_view_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TEMP VIEW CONTACT"/>
 </LinearLayout>

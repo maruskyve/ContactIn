@@ -41,6 +41,12 @@
             android:layout_weight="1"
             android:text="contact list"/>
 
+        <Button android:id="@+id/main_commit_add_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Add Contact"/>
+
         <Button android:id="@+id/main_commit_view_homepage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -28,13 +28,13 @@
 	} else {
 		$query = mysqli_query($con, "INSERT INTO user VALUES (
 		'$user_id', 
-		'$user_fname',
-		'$user_lname',
 		'$user_name',
-		'$user_gender',
 		'$user_phone_number',
 		'$user_email',
 		'$user_password',
+		'$user_fname',
+		'$user_lname',
+		'$user_gender',
 		'$user_ppicture'
 		)");
  

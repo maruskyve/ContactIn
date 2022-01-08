@@ -1,5 +1,6 @@
 package com.example.mobileproject
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -42,16 +43,27 @@ class MainHomepage : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_main_homepage, container, false)
         val viewMyAccount = rootView.findViewById<View>(R.id.main_homepage_commit_view_account)
         val viewGroupMembers = rootView.findViewById<View>(R.id.main_homepage_commit_view_group_members)
+        val logoutSession = rootView.findViewById<View>(R.id.main_homepage_commit_logout)
 
         viewMyAccount.setOnClickListener {  // Action after view MY ACCOUNT button pressed
-            // !configured yet
-            val intent = Intent(activity, MainActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(activity, UserProfile::class.java))
         }
 
         viewGroupMembers.setOnClickListener {  // Action after view GROUP MEMBER button clicked
-            val intent = Intent(activity, GroupDetails::class.java)
-            startActivity(intent)
+            startActivity(Intent(activity, GroupDetails::class.java))
+        }
+
+        logoutSession.setOnClickListener {  // Action after LOGOUT button pressed
+            val loading = ProgressDialog(activity)
+            loading.setMessage("System Logout . . .")
+            loading.show()
+
+            SESSION_LOGIN = false
+            SESSION_LOGIN_DT = ""
+            SESSION_USER_ID = ""
+            startActivity(Intent(this@MainHomepage.context, UserLogin::class.java))
+
+            loading.dismiss()
         }
         return rootView
     }

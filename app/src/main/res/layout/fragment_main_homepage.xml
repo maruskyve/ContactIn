@@ -22,5 +22,9 @@
         android:layout_height="wrap_content"
         android:text="Group Members"/>
 
+    <Button android:id="@+id/main_homepage_commit_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Loogout"/>
 
 </LinearLayout>
