@@ -7,6 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import com.example.mobileproject.datas.contactData
+import com.example.mobileproject.datas.contactTypeData
+import com.example.mobileproject.datas.userData
 import kotlinx.android.synthetic.main.fragment_main_homepage.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -37,35 +41,51 @@ class MainHomepage : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        // !!!RootView is Important!!!
-        // Initialize this code
-        // DONT USE KOTLINX ID EXTENSIONS
-        val rootView = inflater.inflate(R.layout.fragment_main_homepage, container, false)
-        val viewMyAccount = rootView.findViewById<View>(R.id.main_homepage_commit_view_account)
-        val viewGroupMembers = rootView.findViewById<View>(R.id.main_homepage_commit_view_group_members)
-        val logoutSession = rootView.findViewById<View>(R.id.main_homepage_commit_logout)
+        return inflater.inflate(R.layout.fragment_main_homepage, container, false)
+    }
 
-        viewMyAccount.setOnClickListener {  // Action after view MY ACCOUNT button pressed
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        main_homepage_commit_view_account.setOnClickListener {
             startActivity(Intent(activity, UserProfile::class.java))
         }
 
-        viewGroupMembers.setOnClickListener {  // Action after view GROUP MEMBER button clicked
+        main_homepage_commit_view_group_members.setOnClickListener {  // Action after view GROUP MEMBER button clicked
             startActivity(Intent(activity, GroupDetails::class.java))
         }
 
-        logoutSession.setOnClickListener {  // Action after LOGOUT button pressed
+        main_homepage_commit_logout.setOnClickListener {  // Action after LOGOUT button pressed
             val loading = ProgressDialog(activity)
             loading.setMessage("System Logout . . .")
             loading.show()
 
+            // Reset App state
             SESSION_LOGIN = false
             SESSION_LOGIN_DT = ""
             SESSION_USER_ID = ""
+            SESSION_CONTACT_TYPE_DATA_FETCH = false
+            SESSION_USER_DATA_FETCH = false
+            SESSION_CONTACT_DATA_FETCH = false
+            SINGLE_FILES = ""
+
+            Toast.makeText(activity?.applicationContext,
+                "LOGOUT\n" +
+                        "SESSION LOGIN: ${SESSION_LOGIN}\n" +
+                        "SESSION USER_ID: $SESSION_USER_ID\n" +
+                        "SESSION CONTACT TYPE DATA_FETCH: $SESSION_CONTACT_TYPE_DATA_FETCH\n" +
+                        "SESSION USER DATA FETCH: $SESSION_USER_DATA_FETCH\n" +
+                        "SESSION CONTACT DATA FETCH: $SESSION_CONTACT_DATA_FETCH\n", Toast.LENGTH_LONG).show()
+
+            // Reset datas
+            contactTypeData.clear()
+            userData.clear()
+            contactData.clear()
+
             startActivity(Intent(this@MainHomepage.context, UserLogin::class.java))
 
             loading.dismiss()
         }
-        return rootView
     }
 
     companion object {

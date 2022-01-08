@@ -11,6 +11,8 @@ import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
+import com.example.mobileproject.datas.contactData
+import com.example.mobileproject.datas.userData
 import com.example.mobileproject.networking.ApiEndPoint
 import kotlinx.android.synthetic.main.activity_contact_details.*
 import kotlinx.android.synthetic.main.activity_create_contact.*
@@ -22,6 +24,7 @@ class ContactDetails : AppCompatActivity() {
         supportActionBar?.hide() // Hide action bar
         setContentView(R.layout.activity_contact_details)
         inputInit()
+        dataInit()
 
         contact_details_back_btn.setOnClickListener {  // Action after BACK button pressed
             startActivity(Intent(this, MainActivity::class.java))
@@ -44,12 +47,20 @@ class ContactDetails : AppCompatActivity() {
                 contactTypes)
             contact_details_contact_type.adapter = adapter
         }
+    }
 
+    private fun dataInit() {
+        val data = contactData[intent.getStringExtra("itemPosition")!!.toInt()]
+
+        contact_details_fname.setText(data.contactFName)
+        contact_details_lname.setText(data.contactLName)
+        contact_details_phone_number.setText(data.contactPhoneNumber)
+        contact_details_email.setText(data.contactEmail)
     }
 
     private fun saveDetails() {  // Save any change of contact details (UPDATE).
         // Contact UPDATE details data prep
-        val idV = "320"  // Current contact id
+        val idV = intent.getStringExtra("contactId").toString()  // Current contact id
         val phoneNumberV = contact_details_phone_number.text.toString()
         val emailV = contact_details_email.text.toString()
         val fnameV = contact_details_fname.text.toString()
@@ -61,7 +72,7 @@ class ContactDetails : AppCompatActivity() {
         fun processRequest() {
             // Status info
             val loading = ProgressDialog(this)
-            loading.setMessage("Menambahkan data.......")
+            loading.setMessage("Updating Contact . . .")
             loading.show()
 
             AndroidNetworking.post(ApiEndPoint.CONTACT_UPDATE_CONTACT)
@@ -101,11 +112,11 @@ class ContactDetails : AppCompatActivity() {
 
     private fun deleteContact() {  // Delete current contact based on id (DELETE).
         // Contact DELETE data prep
-        val idV = "60"  // Current contact id
+        val idV = intent.getStringExtra("contactId").toString()  // Current contact id
 
         // Status info
         val loading = ProgressDialog(this)
-        loading.setMessage("Menambahkan data.......")
+        loading.setMessage("Deleting Contact . . .")
         loading.show()
 
         fun processRequest() {

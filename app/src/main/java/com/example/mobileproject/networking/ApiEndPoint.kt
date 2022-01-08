@@ -8,7 +8,7 @@ class ApiEndPoint {
         private val SERVER = "http://$IP_ADDRESS/contactin/api/"
 
         var USER_CREATE_ACCOUNT = SERVER+"user_create_account.php"  // CreateAccount
-        var USER_READ_LOGIN = SERVER+"user_read_login.php"  // UserLogin
+        var USER_READ_ACCOUNT = SERVER+"user_read_account.php"  // UserLogin
         var USER_UPDATE_ACCOUNT = SERVER+"user_update_profile.php"  // UserProfile
         var USER_DELETE_ACCOUNT = SERVER+"user_delete_account.php"  // UserProfile
 

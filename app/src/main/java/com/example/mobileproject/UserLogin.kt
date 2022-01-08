@@ -12,6 +12,7 @@ import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.example.mobileproject.networking.ApiEndPoint
 import com.example.mobileproject.datas.UserData
+import com.example.mobileproject.datas.userData
 import kotlinx.android.synthetic.main.activity_user_login.*
 import org.json.JSONObject
 
@@ -35,24 +36,23 @@ class UserLogin : AppCompatActivity() {
         }
     }
 
-
-    private fun loginValidation() : Boolean {  // Validate login credential (READ)
+    private fun loginValidation(){  // Validate login credential (READ)
         // Login data prep
-        val usernameV = login_username.text.toString()
-        val passwordV = login_password.text.toString()
-
-        var validLogin = false
-        var userData = ArrayList<UserData>()
-
-        // Status info
-        val loading = ProgressDialog(this)
-        loading.setMessage("Logging In . . .")
-        loading.show()
+//        val usernameV = login_username.text.toString()
+//        val passwordV = login_password.text.toString()
+        val usernameV = "hedef"
+        val passwordV = "hedef"
 
         fun processRequest() {
-            AndroidNetworking.post(ApiEndPoint.USER_READ_LOGIN)
-                .addBodyParameter("login_username", usernameV)
-                .addBodyParameter("login_password", passwordV)
+            // Status info
+            val loading = ProgressDialog(this)
+            loading.setMessage("Logging In . . .")
+            loading.show()
+
+            AndroidNetworking.get(ApiEndPoint.USER_READ_ACCOUNT)
+                .addQueryParameter("requestContext", "login")
+                .addQueryParameter("login_password", passwordV)
+                .addQueryParameter("login_username", usernameV)
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(object : JSONObjectRequestListener {
@@ -86,12 +86,8 @@ class UserLogin : AppCompatActivity() {
                                     loading.dismiss()
                                 }
                             }
-                            Log.i("SESSION USER ID", SESSION_USER_ID)
-                            Log.i("USER ID", userData[0].toString())
-
-                            validLogin = true
                             SESSION_LOGIN = true
-                            SESSION_USER_ID = ""
+                            SESSION_USER_DATA_FETCH = true
                         }
                         Log.i("UserData: ", UserData::userName.toString())
                     }
@@ -99,20 +95,20 @@ class UserLogin : AppCompatActivity() {
                     override fun onError(anError: ANError?) {
                         loading.dismiss()
                         Log.e("ON ERROR", anError?.errorDetail.toString())
-                        Toast.makeText(applicationContext,
+                        Toast.makeText(
+                            applicationContext,
                             "Failure, " + anError.toString(),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
                 })
         }
-
-        //TEMP
-        SESSION_USER_ID = "37578"
-        SESSION_LOGIN = true
-        //TEMP-END
+        if (!SESSION_LOGIN) {
+            processRequest()
+        }
+//        Log.i("SESSION USER LOGIN", SESSION_LOGIN.toString())
+//        Log.i("SESSION USER ID", SESSION_USER_ID)
+//        Log.i("SESSION USER DATA", userData.toString())
         startActivity(Intent(this, MainActivity::class.java))
-
-        return validLogin
     }
 }

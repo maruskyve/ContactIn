@@ -1,5 +1,9 @@
 package com.example.mobileproject.datas
 
+var contactTypeData = ArrayList<ContactTypeData>()
+var userData = ArrayList<UserData>()
+var contactData = ArrayList<ContactData>()
+
 data class UserData(
     val userId: String,
     val userName: String,

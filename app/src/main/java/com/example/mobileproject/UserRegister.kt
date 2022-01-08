@@ -1,5 +1,6 @@
 package com.example.mobileproject
 
+import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,7 @@ import com.example.mobileproject.networking.ApiEndPoint
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import kotlinx.android.synthetic.main.activity_user_register.*
 import org.json.JSONObject
+import java.io.File
 
 class UserRegister : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,13 +29,33 @@ class UserRegister : AppCompatActivity() {
             startActivity(Intent(this, UserLogin::class.java))
         }
 
+        register_commit_pick_ppicture.setOnClickListener {  // Action after PICK IMAGE button clicked
+            openGalleryForImage()
+        }
+
         register_commit_register.setOnClickListener {  // Action after REGISTER button clicked
             registerValidation()
         }
     }
 
+    val REQUEST_CODE = 100
+    private fun openGalleryForImage() {  // Method to open gallery
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, REQUEST_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE){
+            register_ppicture.setImageURI(data?.data) // handle chosen image
+            Log.i("USER PPICTURE", data?.data.toString())
+        }
+    }
+
+
     private fun registerValidation() {  // temp - Checking registration data entered
-        // Value prep
+        // Account CREATE data prep
         val idV = (0..100000).random().toString()
         val phoneNumberV = register_phone_number.text.toString()
         val emailV = register_email.text.toString()
@@ -44,10 +66,13 @@ class UserRegister : AppCompatActivity() {
         var genderV = if (register_gender_rg.checkedRadioButtonId > 0)  // Error handler: unwanted rb id
             findViewById<RadioButton>(register_gender_rg.checkedRadioButtonId).text.toString() else ""
         val pPictureV = "picture.jpg"
+        val pPictureFile = ""
         genderV = if (genderV == "Male") "M" else "F"
 
+
+
         // INSERT DATA TO DATABASE TABLE (STATUS: WORK WO PPICTURE)
-        fun createAccount() {
+        fun processRequest() {
             val loading = ProgressDialog(this)
             loading.setMessage("Adding Data . . .")
             loading.show()
@@ -80,18 +105,20 @@ class UserRegister : AppCompatActivity() {
                         Toast.makeText(applicationContext, "Failure", Toast.LENGTH_SHORT).show()
                     }
                 })
+//            AndroidNetworking.upload("")
+//                .addMultipartFile("ppicture", ppictureFile)
+//                .setPriority(Priority.MEDIUM)
+//                .build()
+//                .getAsJSONObject(object : JSONObjectRequestListener {
+//                    override fun onResponse(response: JSONObject?) {
+//
+//                    }
+//
+//                    override fun onError(anError: ANError?) {
+//
+//                    }
+//                })
         }
-        createAccount()
-
-        Toast.makeText(this, "Checking your data\n" +
-                "ID = $idV\n" +
-                "FName = ${fnameV}\n" +
-                "LName = ${lnameV}\n" +
-                "Gender = $genderV\n" +
-                "Phone = ${phoneNumberV}\n" +
-                "Email = ${emailV}", Toast.LENGTH_SHORT).show()
-
-        // TEMP TESTING
-//        startActivity(Intent(this, ContactDetails::class.java))
+        processRequest()
     }
 }
