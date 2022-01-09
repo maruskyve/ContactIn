@@ -148,4 +148,21 @@
     <color name="dark_blue">#00008B</color>
     <color name="navy">#000080</color>
     <color name="transparent">#0000ffff</color>
+
+    <!-- MAIN COL -->
+    <!-- https://colorhunt.co/palette/22577a38a3a557cc9980ed99 -->
+    <color name="main_blue_accent_1">#22577A</color>
+    <color name="main_blue_accent_2">#38A3A5</color>
+    <color name="main_blue_accent_3">#57CC99</color>
+    <color name="main_blue_accent_4">#80ED99</color>
+
+    <color name="main_red_accent_2">#DF5959</color>  <!-- Context.Danger -->
+    <color name="main_green_accent_2">#67BA60</color>  <!-- Context.Success -->
+
+    <color name="main_purpblue_accent_1">#6E3CBC</color>
+    <color name="main_purpblue_accent_2">#7267CB</color>
+    <color name="main_purpblue_accent_3">#98BAE7</color>
+    <color name="main_purpblue_accent_4">#B8E4F0</color>
+
+
 </resources>

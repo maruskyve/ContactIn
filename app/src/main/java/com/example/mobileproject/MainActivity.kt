@@ -1,20 +1,13 @@
 package com.example.mobileproject
 
-import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.androidnetworking.AndroidNetworking
-import com.androidnetworking.common.Priority
-import com.androidnetworking.error.ANError
-import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.example.mobileproject.datas.*
-import com.example.mobileproject.networking.ApiEndPoint
 import kotlinx.android.synthetic.main.activity_main.*
-import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
     private val mainHomepage = MainHomepage()
@@ -25,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide() // Hide action bar
         DataPrep().FetchContactTypeData()
 
-        Toast.makeText(this, "SESSION USER LOGIN: ${SESSION_LOGIN.toString()}\n"+
+        Toast.makeText(this, "SESSION USER LOGIN: ${SESSION_LOGIN}\n"+
                 "SESSION USER ID: ${SESSION_USER_ID}\n" +
                 "SESSION USER DATA: ${userData}\n" +
                 "", Toast.LENGTH_LONG).show()

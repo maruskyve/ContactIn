@@ -29,11 +29,6 @@ class UserLogin : AppCompatActivity() {
         login_commit_register.setOnClickListener {  // Action after REGISTER button clicked
             startActivity(Intent(this, UserRegister::class.java))
         }
-
-        // TEMP
-        login_commit_view_contact.setOnClickListener {
-            startActivity(Intent(this, ContactDetails::class.java))
-        }
     }
 
     private fun loginValidation(){  // Validate login credential (READ)

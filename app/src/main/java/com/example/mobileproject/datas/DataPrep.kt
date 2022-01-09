@@ -12,6 +12,9 @@ import org.json.JSONObject
 
 class DataPrep {
     fun FetchContactTypeData() {
+        // Reset data
+        contactTypeData.clear()
+
         if (!SESSION_CONTACT_TYPE_DATA_FETCH) {
             AndroidNetworking.post(ApiEndPoint.CONTACT_TYPE_READ)
                 .setPriority(Priority.MEDIUM)

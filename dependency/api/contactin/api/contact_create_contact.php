@@ -10,18 +10,7 @@
 	$contact_stars = $_POST['contact_stars'];
 	$fk_contact_type_id = $_POST['fk_contact_type_id'];
 	$fk_user_id = $_POST['fk_user_id'];
-
-	// DUMMY
-	// $contact_id = "asdrf";
-	// $contact_phone_number = "ASD";
-	// $contact_email = "AUFJMJ";
-	// $contact_fname = "AUFDHF@NSUDF";
-	// $contact_lname = "adhna9doh";
-	// $contact_ppicture = "9wf9";
-	// $contact_stars = "0";
-	// $fk_contact_type_id = "2";
-	// $fk_user_id = "72";
-
+	
 	if(!$contact_id){
 		echo json_encode(array('message'=>'required field is empty'));
 	} else {

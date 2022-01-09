@@ -6,16 +6,11 @@
     android:orientation="vertical"
     tools:context=".MainHomepage">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageButton android:id="@+id/main_homepage_commit_view_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="HOMEPAGE FRAGMENT HERE"/>
-
-    <Button android:id="@+id/main_homepage_commit_view_account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="My Account"/>
+        android:scaleX="1"
+        android:src="@drawable/outline_person_24"/>
 
     <Button android:id="@+id/main_homepage_commit_view_group_members"
         android:layout_width="wrap_content"

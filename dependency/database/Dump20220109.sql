@@ -24,11 +24,11 @@ DROP TABLE IF EXISTS `contact`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `contact` (
   `contact_id` int(11) NOT NULL,
-  `contact_ppicture` varchar(100) DEFAULT NULL,
+  `contact_phone_number` varchar(20) DEFAULT NULL,
+  `contact_email` varchar(35) DEFAULT NULL,
   `contact_fname` varchar(50) DEFAULT NULL,
   `contact_lname` varchar(35) DEFAULT NULL,
-  `contact_email` varchar(35) DEFAULT NULL,
-  `contact_phone_number` varchar(20) DEFAULT NULL,
+  `contact_ppicture` varchar(100) DEFAULT NULL,
   `contact_stars` enum('1','0') DEFAULT NULL,
   `fk_contact_type_id` int(11) DEFAULT NULL,
   `fk_user_id` int(11) DEFAULT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE `contact` (
 
 LOCK TABLES `contact` WRITE;
 /*!40000 ALTER TABLE `contact` DISABLE KEYS */;
-INSERT INTO `contact` VALUES (0,'ASD','AUFJMJ','AUFDHF@NSUDF','adhna9doh','9wf9','0',2,398),(19,'123','yyyyyyyyyyyyy','rthrhhdgfsf','dgdg','picture.jpg','0',3,398),(24,'b6yy','gfhfhfh','rtyry','hnj ','picture.jpg','0',3,72),(33,'eg','bgvedrg g','14fgerg','fjurn','picture.jpg','0',3,72),(288,'bbbb','bbbb','bbbb','bbb','picture.jpg','0',3,72),(320,'updatedPicture.jpg','32fd4223','4f2424324','42d42342d42','23f423424234','1',2,398),(375,'91293165841','kjqewk@jkeuhwer','hela','aleh','picture.jpg','0',3,37578),(453,'b544y','ub56','cw246','nuru3','picture.jpg','0',3,72),(521,'9345789391','qkwhne@wojuw.com','mose','esom','picture.jpg','0',3,37578),(953,'rtyy','5g3453@3b63','G@#$@#$','vt345635','picture.jpg','0',3,398),(1231,'42g5344b5','BBBBB','8u6b676n','56785678876',NULL,'0',1,398),(123151,'66666','AAAAA','6456','5345',NULL,'0',2,72),(414123,'wff','CCCCCC',NULL,NULL,NULL,NULL,2,72);
+INSERT INTO `contact` VALUES (24,'picture.jpg','hnj ','gfhfhfh','rtyry','b6yy','0',3,72),(32,'ertyrryryituyi','tyuiyrty34534e','ttttttrete','eryututu','TE','0',3,398),(33,'picture.jpg','fjurn','bgvedrg g','14fgerg','eg','0',3,72),(48,'ouim','uiipon','nuim','yuim','NY','0',4,398),(197,'RE','eeee','eeee','rrrr','wwww','0',3,37578),(288,'picture.jpg','bbb','bbbb','bbbb','bbbb','0',3,72),(375,'picture.jpg','aleh','kjqewk@jkeuhwer','hela','91293165841','0',3,37578),(453,'picture.jpg','nuru3','ub56','cw246','b544y','0',3,72),(459,'bbbbb','bbbbb','bbbbbbb','bbbb','BB','0',4,37578),(487,'hdef','jdef','cdef','hdef','CH','0',3,398),(521,'picture.jpg','esom','qkwhne@wojuw.com','mose','9345789391','0',3,37578),(531,'000000','uhdihad@odjadj.com','FNAME','LNAME','FL','0',2,37578),(601,'13','313131','3113','123131','313131','0',2,37578),(679,'2222','22','1','22','12','0',1,37578),(827,'11','123','123','123','123','0',2,37578),(835,'00000','00000','666666','666666','66','0',2,398),(837,'yrefdi','urefdi','wrefdi','crefdi','WC','0',4,398),(845,'mA','auf','','meiry','','0',3,37578),(868,'9123218340','kjfhuiwh@fjfhi','CONTACT','CONTACT1','CC','0',3,398),(953,'3453541','hdhdh@342e','JAJAJAJA','G@#$@#$','updatedPicture.jpg','1',2,398),(985,'2','2','2','22','22','0',2,37578),(991,'ghert','hjghjhfj','fddfg','dgdhfghf','FD','0',2,398),(1231,'23425252342','sfsfd@wefrwr.hrh','BBBBB','8u6b676n','updatedPicture.jpg','1',2,398),(123151,NULL,'5345','AAAAA','6456','66666','0',2,72),(414123,NULL,NULL,'CCCCCC',NULL,'wff',NULL,2,72);
 /*!40000 ALTER TABLE `contact` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -101,7 +101,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (62,'maruf','  jolajsd@dmladsf','nusdfsf908955','','jojadu9021','iasdu90j9uf0s VVRSGF','M',''),(72,'123','123','123','','ddfsfs','dfsf','M',''),(398,'hedef','hedef@email.com','1290310238','hedef','hedef','fedeh','M','picture.jpg'),(9231,'username','useremail','userphone','userpassword','userfname','userlname','','userppicture'),(21573,'4f34242f','2224','2f4v2424','34242f4','2v42424','2v424','M','picture.jpg'),(25473,'dsfv','sdfsf','asdad','M','dfgd','cvbcb','','picture.jpg'),(37578,'tirpitz','tirpitz@meiry.com','019827478963','TIRPITZ','tp','tz','M','pic.jpg'),(53983,'btjhtjbtyjtyj','tyjtjt','tjt','yjtjtj','jtjtj','tj','F','picture.jpg');
+INSERT INTO `user` VALUES (62,'maruf','  jolajsd@dmladsf','nusdfsf908955','','jojadu9021','iasdu90j9uf0s VVRSGF','M',''),(72,'123','123','123','','ddfsfs','dfsf','M',''),(398,'hedef','hedef@email.com','77777777','hedef','hedef','fedeh','F','pic.jpg'),(2994,'1','3','4','2','5','6','F','picture.jpg'),(3543,'1','111','1111','11','11111','111111','F','picture.jpg'),(9231,'username','useremail','userphone','userpassword','userfname','userlname','M','pic.jpg'),(21573,'4f34242f','2224','2f4v2424','34242f4','2v42424','2v424','M','picture.jpg'),(25473,'dsfv','sdfsf','asdad','M','dfgd','cvbcb','','picture.jpg'),(37578,'tirpitz','tirpitz@meiry.com','019827478963','TIRPITZ','tp','tz','M','pic.jpg'),(48836,'[[[','[[[[','[[[','[[[[','[[[','[[[','M','picture.jpg'),(53983,'btjhtjbtyjtyj','tyjtjt','tjt','yjtjtj','jtjtj','tj','F','picture.jpg'),(77905,'fellow666','093827428','fllow@jdef.com','fllo','oiwjrwofjo','mjui','M','picture.jpg');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -114,4 +114,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-08  7:32:20
+-- Dump completed on 2022-01-09 13:29:49

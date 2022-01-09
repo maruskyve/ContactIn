@@ -1,56 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".UserLogin">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
 
+        <com.github.captain_miao.optroundcardview.OptRoundCardView android:id="@+id/login_main_cv"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            app:optRoundContentPadding="20dp"
+            app:optRoundCardCornerRadius="20dp"
+            app:optRoundCardRightTopCorner="false"
+            app:optRoundCardLeftBottomCorner="false"
+            app:optRoundCardBackgroundColor="@color/main_purpblue_accent_2">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ContactIn"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:text="Login"
+                    android:textSize="25dp"
+                    android:textColor="@color/white"/>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardCornerRadius="20dp">
+
+                    <EditText android:id="@+id/login_username"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:background="@color/white"
+                        android:hint="Enter your username"
+                        android:textSize="16dp"
+                        android:textColorHint="@color/main_purpblue_accent_2"/>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardCornerRadius="20dp">
+
+                    <EditText android:id="@+id/login_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:background="@color/white"
+                        android:hint="Enter username"
+                        android:textSize="16dp"
+                        android:textColorHint="@color/main_purpblue_accent_2"/>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView android:id="@+id/login_commit_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="20dp"
+                    android:clickable="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="Login Now"
+                        android:textSize="20dp"
+                        android:textColor="@color/main_purpblue_accent_2"
+                        android:textStyle="bold"/>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+        </com.github.captain_miao.optroundcardview.OptRoundCardView>
+
+        <com.google.android.material.card.MaterialCardView android:id="@+id/login_commit_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/login_main_cv"
+            android:layout_gravity="center"
+            app:contentPaddingTop="20dp"
+            app:cardElevation="0dp"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Create New Account"
+                android:textColor="@color/main_purpblue_accent_2"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView android:id="@+id/login_commit_help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/login_main_cv"
+            app:contentPaddingTop="20dp"
+            app:cardElevation="0dp"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Request For Help"
+                android:textColor="@color/main_purpblue_accent_2"/>
+        </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LOGIN"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Username"/>
-
-    <EditText android:id="@+id/login_username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="enter username or email . . ."/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Password"/>
-
-    <EditText android:id="@+id/login_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="enter password . . ."/>
-
-    <Button android:id="@+id/login_commit_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login Now"/>
-
-    <Button android:id="@+id/login_commit_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Create New Account"/>
-
-    <Button android:id="@+id/login_commit_view_contact"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TEMP VIEW CONTACT"/>
-</LinearLayout>
+</RelativeLayout>

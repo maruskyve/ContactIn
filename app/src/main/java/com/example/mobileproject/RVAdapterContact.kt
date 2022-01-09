@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileproject.ContactDetails
 import com.example.mobileproject.R
@@ -28,7 +30,11 @@ class RVAdapterContact (private val context: Context, private val arrayList: Arr
         holder.tvId.text = arrayList.get(position).contactId
         holder.tvPPicture.text = arrayList.get(position).contactPPicture
         holder.tvName.text = arrayList.get(position).contactFName
-        holder.tvStars.setText(arrayList.get(position).contactStars)
+        holder.tvStars.background.setTint(
+            if(arrayList.get(position).contactStars == "1") ContextCompat.getColor(context, R.color.goldenrod)
+            else ContextCompat.getColor(context, R.color.light_grey))
+//        holder.tvStars.setOnClickListener {
+//        }
         holder.cvContact.setOnClickListener {
             val i = Intent(context, ContactDetails::class.java)
             i.putExtra("contactId", arrayList.get(position).contactId)
@@ -43,7 +49,7 @@ class RVAdapterContact (private val context: Context, private val arrayList: Arr
         val tvId : TextView = view.findViewById(R.id.contact_list_id)
         val tvPPicture : TextView = view.findViewById(R.id.contact_list_ppicture)
         val tvName : TextView = view.findViewById(R.id.contact_list_name)
-        val tvStars : Button = view.findViewById(R.id.contact_list_stars)
+        val tvStars : ImageButton = view.findViewById(R.id.contact_list_stars)
         val cvContact : MaterialCardView = view.findViewById(R.id.contact_list_cv)
     }
 }
