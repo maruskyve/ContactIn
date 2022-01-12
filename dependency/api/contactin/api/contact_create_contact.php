@@ -11,8 +11,9 @@
 	$fk_contact_type_id = $_POST['fk_contact_type_id'];
 	$fk_user_id = $_POST['fk_user_id'];
 	
-	if(!$contact_id){
-		echo json_encode(array('message'=>'required field is empty'));
+	// Required field (contact_phone_number, contact_email, contact_fname, contact_lname)
+	if (!$contact_phone_number || !$contact_email || !$contact_fname || !$contact_lname) {
+		echo json_encode(array('message'=>'Required field is empty'));
 	} else {
 		$query = mysqli_query($con, "INSERT INTO contact VALUES (
 			'$contact_id',
@@ -24,11 +25,11 @@
 			'$contact_stars',
 			'$fk_contact_type_id',
 			'$fk_user_id')");
- 
+
 		if ($query){
-			echo json_encode(array('message'=>'user data successfully added'));
+			echo json_encode(array('message'=>'Contact successfully added'));
 		} else {
-			echo json_encode(array('message'=>'user data failed to add'));
+			echo json_encode(array('message'=>'Failed to add contact'));
 		}
 	}
 ?>

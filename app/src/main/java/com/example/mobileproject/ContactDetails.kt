@@ -1,5 +1,6 @@
 package com.example.mobileproject
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -12,17 +13,19 @@ import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.example.mobileproject.datas.contactData
-import com.example.mobileproject.datas.userData
+import com.example.mobileproject.datas.contactTypeData
 import com.example.mobileproject.networking.ApiEndPoint
 import kotlinx.android.synthetic.main.activity_contact_details.*
 import kotlinx.android.synthetic.main.activity_create_contact.*
 import org.json.JSONObject
 
 class ContactDetails : AppCompatActivity() {
+    private var currentItemPosition = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide() // Hide action bar
         setContentView(R.layout.activity_contact_details)
+        currentItemPosition = intent.getStringExtra("itemPosition")!!.toInt()
         inputInit()
         dataInit()
 
@@ -33,19 +36,34 @@ class ContactDetails : AppCompatActivity() {
             saveDetails()
         }
         contact_details_commit_delete_contact.setOnClickListener {  // Action after DELETE contact button pressed
-            deleteContact()
-        }
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Contact Deletion Confirmation")
+            builder.setMessage("Are you sure want to delete this Contact?\nThis action cannot be undo")
+            builder.setIcon(android.R.drawable.ic_dialog_alert)
 
+            builder.setPositiveButton("Yes"){dialogInterface, which ->
+                deleteContact()
+            }
+
+            builder.setNeutralButton("Cancel"){dialogInterface , which ->
+            }
+            val alertDialog: AlertDialog = builder.create()
+            alertDialog.setCancelable(false)
+            alertDialog.show()
+        }
     }
 
     private fun inputInit() {  // Initializer for multi choice input
-        val contactTypes = resources.getStringArray(R.array.contact_type)
-
-        if (contact_details_contact_type != null) {
+        val contactTypeName = arrayListOf<String>()
+        for (x in contactTypeData) {  // Fetch type name/per row
+            contactTypeName.add(x.contactTypeName)
+        }
+        if (contact_details_contact_type != null) {  // Set contact type spinner values based on position
             val adapter = ArrayAdapter(this,
                 android.R.layout.simple_spinner_item,
-                contactTypes)
+                contactTypeName)
             contact_details_contact_type.adapter = adapter
+            contact_details_contact_type.setSelection(contactData[currentItemPosition].contactTypeId.toInt()-1)
         }
     }
 
@@ -65,9 +83,9 @@ class ContactDetails : AppCompatActivity() {
         val emailV = contact_details_email.text.toString()
         val fnameV = contact_details_fname.text.toString()
         val lnameV = contact_details_lname.text.toString()
-        val ppictureV = "updatedPicture.jpg"
-        val starsV = "1"
-        val fkContactTypeIdV = "2"
+        val ppictureV = fnameV.first().uppercase()+lnameV.first().uppercase()
+        val starsV = "0"
+        val fkContactTypeIdV = (contact_details_contact_type.selectedItemId+1).toString()
 
         fun processRequest() {
             // Status info

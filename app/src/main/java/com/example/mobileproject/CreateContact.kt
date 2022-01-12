@@ -2,23 +2,27 @@ package com.example.mobileproject
 
 import android.app.ProgressDialog
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
-import com.example.mobileproject.datas.ContactTypeData
 import com.example.mobileproject.datas.contactTypeData
 import com.example.mobileproject.networking.ApiEndPoint
 import kotlinx.android.synthetic.main.activity_contact_details.*
 import kotlinx.android.synthetic.main.activity_create_contact.*
 import org.json.JSONObject
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class CreateContact : AppCompatActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_contact)
@@ -45,18 +49,21 @@ class CreateContact : AppCompatActivity() {
                 android.R.layout.simple_spinner_item,
                 contactTypeName)
             create_contact_contact_type.adapter = adapter
-            create_contact_contact_type.setSelection(1)
+            create_contact_contact_type.setSelection(0)
         }
     }
 
+    // CREATE CONTACT
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun saveContact() {  // Save all entered data from user (CREATE).
         // Data prep
-        val idV = (10..1000).random().toString()
+        val idV = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS"))+(100..999).random().toString()
         val phoneNumberV = create_contact_phone_number.text.toString()
         val emailV = create_contact_email.text.toString()
         val fnameV = create_contact_fname.text.toString()
         val lnameV = create_contact_lname.text.toString()
-        val ppictureV = fnameV.first().uppercase()+lnameV.first().uppercase()
+        val ppictureV = if (fnameV.isNotEmpty() && lnameV.isNotEmpty())  // Empty name field handler
+            fnameV.first().uppercase()+lnameV.first().uppercase() else ""
         val starsV = "0"
         val fkContactTypeIdV = (create_contact_contact_type.selectedItemId+1).toString()
         val fkUseridV = SESSION_USER_ID
@@ -88,7 +95,7 @@ class CreateContact : AppCompatActivity() {
                         ).show()
 
                         if (response?.getString("message")?.contains("successfully")!!) {
-                            this@CreateContact.finish()
+                            startActivity(Intent(this@CreateContact, MainActivity::class.java))
                         }
                     }
 

@@ -156,7 +156,7 @@
                     android:padding="10dp"
                     android:textSize="16dp"
                     android:background="@color/white"
-                    android:hint="Enter your Email"/>
+                    android:hint="Enter your First Name"/>
             </com.google.android.material.card.MaterialCardView>
 
             <TextView
@@ -180,7 +180,7 @@
                     android:padding="10dp"
                     android:textSize="16dp"
                     android:background="@color/white"
-                    android:hint="Enter your Email"/>
+                    android:hint="Enter your Last Name"/>
             </com.google.android.material.card.MaterialCardView>
 
             <TextView

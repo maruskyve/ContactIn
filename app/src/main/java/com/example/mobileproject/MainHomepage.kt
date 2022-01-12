@@ -1,5 +1,6 @@
 package com.example.mobileproject
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import com.example.mobileproject.datas.DataPrep
 import com.example.mobileproject.datas.contactData
 import com.example.mobileproject.datas.contactTypeData
 import com.example.mobileproject.datas.userData
@@ -40,6 +41,7 @@ class MainHomepage : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        DataPrep().fetchUserData()
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_main_homepage, container, false)
     }
@@ -56,36 +58,44 @@ class MainHomepage : Fragment() {
         }
 
         main_homepage_commit_logout.setOnClickListener {  // Action after LOGOUT button pressed
-            val loading = ProgressDialog(activity)
-            loading.setMessage("System Logout . . .")
-            loading.show()
+            val builder = AlertDialog.Builder(context)
+            builder.setTitle("Logout Confirmation")
+            builder.setMessage("Are you sure want to Logout?")
+            builder.setIcon(android.R.drawable.ic_dialog_alert)
 
-            // Reset App state
-            SESSION_LOGIN = false
-            SESSION_LOGIN_DT = ""
-            SESSION_USER_ID = ""
-            SESSION_CONTACT_TYPE_DATA_FETCH = false
-            SESSION_USER_DATA_FETCH = false
-            SESSION_CONTACT_DATA_FETCH = false
-            SINGLE_FILES = ""
+            //performing positive action
+            builder.setPositiveButton("Yes"){dialogInterface, which ->
+                val loading = ProgressDialog(activity)
+                loading.setMessage("System Logout . . .")
+                loading.show()
 
-            Toast.makeText(activity?.applicationContext,
-                "LOGOUT\n" +
-                        "SESSION LOGIN: ${SESSION_LOGIN}\n" +
-                        "SESSION USER_ID: $SESSION_USER_ID\n" +
-                        "SESSION CONTACT TYPE DATA_FETCH: $SESSION_CONTACT_TYPE_DATA_FETCH\n" +
-                        "SESSION USER DATA FETCH: $SESSION_USER_DATA_FETCH\n" +
-                        "SESSION CONTACT DATA FETCH: $SESSION_CONTACT_DATA_FETCH\n", Toast.LENGTH_LONG).show()
+                resetState()
+                startActivity(Intent(this@MainHomepage.context, UserLogin::class.java))
 
-            // Reset datas
-            contactTypeData.clear()
-            userData.clear()
-            contactData.clear()
+                loading.dismiss()
+            }
 
-            startActivity(Intent(this@MainHomepage.context, UserLogin::class.java))
-
-            loading.dismiss()
+            builder.setNeutralButton("Cancel"){dialogInterface , which -> }
+            val alertDialog: AlertDialog = builder.create()
+            alertDialog.setCancelable(false)
+            alertDialog.show()
         }
+    }
+
+    private fun resetState() {
+        // Reset App state
+        SESSION_LOGIN = false
+        SESSION_LOGIN_DT = ""
+        SESSION_USER_ID = ""
+        SESSION_CONTACT_TYPE_DATA_FETCH = false
+        SESSION_USER_DATA_FETCH = false
+        SESSION_CONTACT_DATA_FETCH = false
+        SINGLE_FILES = ""
+
+        // Reset datas
+        contactTypeData.clear()
+        userData.clear()
+        contactData.clear()
     }
 
     companion object {

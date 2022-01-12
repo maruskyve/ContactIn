@@ -53,7 +53,8 @@
                     <EditText android:id="@+id/login_username"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="10dp"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="10dp"
                         android:background="@color/white"
                         android:hint="Enter your username"
                         android:textSize="16dp"
@@ -69,9 +70,12 @@
                     <EditText android:id="@+id/login_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="10dp"
+                        android:singleLine="true"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="10dp"
+                        android:inputType="textPassword"
                         android:background="@color/white"
-                        android:hint="Enter username"
+                        android:hint="Enter your password"
                         android:textSize="16dp"
                         android:textColorHint="@color/main_purpblue_accent_2"/>
                 </com.google.android.material.card.MaterialCardView>
@@ -86,7 +90,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="10dp"
+                        android:paddingHorizontal="25dp"
+                        android:paddingVertical="10dp"
                         android:text="Login Now"
                         android:textSize="20dp"
                         android:textColor="@color/main_purpblue_accent_2"
@@ -99,7 +104,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/login_main_cv"
-            android:layout_gravity="center"
             app:contentPaddingTop="20dp"
             app:cardElevation="0dp"
             android:clickable="true">

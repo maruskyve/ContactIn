@@ -9,7 +9,7 @@
 	$contact_ppicture = $_POST['contact_ppicture'];
 	$contact_stars = $_POST['contact_stars'];
 	$fk_contact_type_id = $_POST['fk_contact_type_id'];
-		
+	
 	$query = mysqli_query($con, "UPDATE contact SET 
 		contact_phone_number='$contact_phone_number', 
 		contact_email='$contact_email',
@@ -20,9 +20,9 @@
 		fk_contact_type_id='$fk_contact_type_id' WHERE contact_id = '$contact_id'");
 	
 	if ($query){
-		echo json_encode(array('message'=>'contact data successfully updated'));
+		echo json_encode(array('message'=>'Contact data successfully updated'));
 	} else {
-		echo json_encode(array('message'=>'contact data failed to update'));
+		echo json_encode(array('message'=>'Failed to update contact data'));
 	}
 	
 ?>

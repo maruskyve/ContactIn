@@ -18,40 +18,85 @@
             app:tint="@color/white"
             android:backgroundTint="@color/main_purpblue_accent_2"
             android:src="@drawable/outline_arrow_back_ios_24"/>
-    </RelativeLayout>
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        app:cardBackgroundColor="@color/main_purpblue_accent_3"
-        app:contentPadding="20dp"
-        app:cardCornerRadius="25dp">
-
-        <LinearLayout
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:text="About Us"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"/>
+    </RelativeLayout>
 
-            <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="7dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Tentang Aplikasi"
+            android:textSize="20dp"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/gray"
+            app:contentPadding="20dp"
+            app:cardCornerRadius="25dp">
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Kelompok 7"
-                android:textSize="30dp"
-                android:textColor="@color/main_purpblue_accent_2"/>
+                android:orientation="vertical">
 
-            <TextView
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ContactIn adalah sebuah aplikasi yang dapat dimanfaatkan sebagai alat untuk melakukan manajemen pada
+kontakmu. Lakukan apapun sesuai keinginanmu"
+                    android:textSize="14dp"
+                    android:textColor="@color/dim_gray"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Tentang kami"
+            android:textSize="20dp"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/gray"
+            app:contentPadding="20dp"
+            app:cardCornerRadius="25dp">
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity=""
-                android:text="1. 5190411 - Fathyh Qorie Prasetyo
-                \n2. 5190411 - Wisnu Arya Pratama
-                \n3. 5190411 - Nova Dwi Lestari
-                \n4. 5190411 - Ma'ruf Nurrochman"
-                android:textColor="@color/black"/>
+                android:orientation="vertical">
 
-
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity=""
+                    android:text="Kami adalah Kelompok 6 dengan anggota:\n\n1. 5190411201 - Fathyh Qorie Prasetyo
+                    \n2. 5190411339 - Wisnu Arya Pratama
+                    \n3. 5190411340 - Nova Dwi Lestari
+                    \n4. 5190411370 - Ma'ruf Nurrochman"
+                    android:textColor="@color/dim_gray"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
 </LinearLayout>

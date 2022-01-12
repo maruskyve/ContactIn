@@ -16,24 +16,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide() // Hide action bar
-        DataPrep().FetchContactTypeData()
-
-        Toast.makeText(this, "SESSION USER LOGIN: ${SESSION_LOGIN}\n"+
-                "SESSION USER ID: ${SESSION_USER_ID}\n" +
-                "SESSION USER DATA: ${userData}\n" +
-                "", Toast.LENGTH_LONG).show()
-
-        Log.i("SESSION USER LOGIN", SESSION_LOGIN.toString())
-        Log.i("SESSION USER ID", SESSION_USER_ID)
-        Log.i("SESSION USER DATA", userData.toString())
+        DataPrep().fetchContactTypeData()
 
         if (SESSION_LOGIN) {  // Checking if user already login or !
+            DataPrep().fetchContactData()
             setContentView(R.layout.activity_main)
             contentMain()
         } else {
             requireLogin()
         }
-
     }
 
     // Replacing layout to fragment
@@ -46,10 +37,12 @@ class MainActivity : AppCompatActivity() {
 
         fragmentInit(mainContactList)
         main_commit_view_contact_list.setOnClickListener {  // Action after contact list btn pressed
+            fun fragmentInit(fragment : Fragment) {  // Load fragment to pre-initialized LinearLayout
+                val fr = supportFragmentManager.beginTransaction()
+                fr.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right)
+                fr.replace(R.id.main_fragment_container, fragment).commit()
+            }
             fragmentInit(mainContactList)
-            Toast.makeText(this, "SESSION CONTACT DATA FETCH: $SESSION_CONTACT_DATA_FETCH\n"+
-                    "CONTACT DATA SIZE: ${contactData.size}\n"+
-                    contactData.toString(), Toast.LENGTH_LONG).show()
         }
 
         main_commit_add_contact.setOnClickListener {  // Action after ADD contact btn pressed
@@ -57,9 +50,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         main_commit_view_homepage.setOnClickListener {  // Homepage button
+            fun fragmentInit(fragment : Fragment) {  // Load fragment to pre-initialized LinearLayout
+                val fr = supportFragmentManager.beginTransaction()
+                fr.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right)
+                fr.replace(R.id.main_fragment_container, fragment).commit()
+            }
             fragmentInit(mainHomepage)
         }
-
     }
 
     // Login required if loginStatus is false

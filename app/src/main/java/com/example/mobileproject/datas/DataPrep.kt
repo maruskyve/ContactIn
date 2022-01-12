@@ -11,7 +11,7 @@ import com.example.mobileproject.networking.ApiEndPoint
 import org.json.JSONObject
 
 class DataPrep {
-    fun FetchContactTypeData() {
+    fun fetchContactTypeData() {
         // Reset data
         contactTypeData.clear()
 
@@ -51,7 +51,7 @@ class DataPrep {
         }
     }
 
-    fun FetchUserData() {
+    fun fetchUserData() {
         // Reset datas
         userData.clear()
 
@@ -96,7 +96,7 @@ class DataPrep {
             })
     }
 
-    fun FetchContactData() {
+    fun fetchContactData() {
         // Reset datas
         contactData.clear()
 

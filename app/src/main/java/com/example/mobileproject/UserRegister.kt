@@ -3,13 +3,13 @@ package com.example.mobileproject
 import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.RadioButton
-import android.widget.Spinner
 import android.widget.Toast
-import androidx.core.view.get
+import androidx.annotation.RequiresApi
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
@@ -17,9 +17,11 @@ import com.example.mobileproject.networking.ApiEndPoint
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import kotlinx.android.synthetic.main.activity_user_register.*
 import org.json.JSONObject
-import java.io.File
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class UserRegister : AppCompatActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide() // Hide action bar
@@ -54,9 +56,10 @@ class UserRegister : AppCompatActivity() {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun registerValidation() {  // temp - Checking registration data entered
         // Account CREATE data prep
-        val idV = (0..100000).random().toString()
+        val idV = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS"))+(100..999).random().toString()
         val phoneNumberV = register_phone_number.text.toString()
         val emailV = register_email.text.toString()
         val passwordV = register_password.text.toString()
@@ -69,12 +72,10 @@ class UserRegister : AppCompatActivity() {
         val pPictureFile = ""
         genderV = if (genderV == "Male") "M" else "F"
 
-
-
         // INSERT DATA TO DATABASE TABLE (STATUS: WORK WO PPICTURE)
         fun processRequest() {
             val loading = ProgressDialog(this)
-            loading.setMessage("Adding Data . . .")
+            loading.setMessage("Registering . . .")
             loading.show()
 
             AndroidNetworking.post(ApiEndPoint.USER_CREATE_ACCOUNT)
@@ -94,6 +95,7 @@ class UserRegister : AppCompatActivity() {
                         loading.dismiss()
                         Toast.makeText(applicationContext, response?.getString("message"), Toast.LENGTH_SHORT).show()
 
+                        Log.i("RESPONSE", response?.getString("message").toString())
                         if (response?.getString("message")?.contains("successfully")!!){
                             this@UserRegister.finish()
                         }
@@ -105,19 +107,6 @@ class UserRegister : AppCompatActivity() {
                         Toast.makeText(applicationContext, "Failure", Toast.LENGTH_SHORT).show()
                     }
                 })
-//            AndroidNetworking.upload("")
-//                .addMultipartFile("ppicture", ppictureFile)
-//                .setPriority(Priority.MEDIUM)
-//                .build()
-//                .getAsJSONObject(object : JSONObjectRequestListener {
-//                    override fun onResponse(response: JSONObject?) {
-//
-//                    }
-//
-//                    override fun onError(anError: ANError?) {
-//
-//                    }
-//                })
         }
         processRequest()
     }

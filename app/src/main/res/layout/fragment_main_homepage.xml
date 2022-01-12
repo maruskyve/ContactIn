@@ -3,23 +3,113 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingHorizontal="7dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".MainHomepage">
 
-    <ImageButton android:id="@+id/main_homepage_commit_view_account"
+    <com.google.android.material.card.MaterialCardView android:id="@+id/main_homepage_commit_view_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/main_purpblue_accent_2"
+        app:cardCornerRadius="25dp"
+        android:clickable="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp"
+                android:text="My Account"
+                android:textColor="@color/main_purpblue_accent_2"
+                android:textSize="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:drawableRight="@drawable/outline_arrow_forward_ios_24"
+                android:drawableTint="@color/main_purpblue_accent_2"
+                android:paddingHorizontal="10dp"/>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView android:id="@+id/main_homepage_commit_view_group_members"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleX="1"
-        android:src="@drawable/outline_person_24"/>
+        android:layout_marginTop="5dp"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/main_purpblue_accent_2"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="25dp"
+        android:clickable="true">
 
-    <Button android:id="@+id/main_homepage_commit_view_group_members"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp"
+                android:text="About Us"
+                android:textColor="@color/main_purpblue_accent_2"
+                android:textSize="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:drawableRight="@drawable/outline_arrow_forward_ios_24"
+                android:drawableTint="@color/main_purpblue_accent_2"
+                android:paddingHorizontal="10dp"/>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView android:id="@+id/main_homepage_commit_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Group Members"/>
+        android:layout_marginTop="5dp"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/main_red_accent_2"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="25dp"
+        android:clickable="true">
 
-    <Button android:id="@+id/main_homepage_commit_logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Loogout"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp"
+                android:text="Logout"
+                android:textColor="@color/main_red_accent_2"
+                android:textSize="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:drawableRight="@drawable/outline_arrow_forward_ios_24"
+                android:drawableTint="@color/main_red_accent_2"
+                android:paddingHorizontal="10dp"/>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

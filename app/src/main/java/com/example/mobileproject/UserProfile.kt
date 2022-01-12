@@ -1,6 +1,7 @@
 package com.example.mobileproject
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -12,8 +13,7 @@ import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
-import com.example.mobileproject.datas.DataPrep
-import com.example.mobileproject.datas.userData
+import com.example.mobileproject.datas.*
 import com.example.mobileproject.networking.ApiEndPoint
 import kotlinx.android.synthetic.main.activity_user_profile.*
 import kotlinx.android.synthetic.main.activity_user_register.*
@@ -32,7 +32,6 @@ class UserProfile : AppCompatActivity() {
 
         user_profile_commit_ppicture.setOnClickListener {  // Action after CHANGE picture clicked
             openGalleryForImage()
-//            DataPrep().FetchUserData()
         }
 
         user_profile_commit_save_changes.setOnClickListener {  // Action after SAVE button clicked
@@ -40,7 +39,21 @@ class UserProfile : AppCompatActivity() {
         }
 
         user_profile_commit_delete_account.setOnClickListener {  // Action after DELETE button clicked
-            deleteAccount()
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Account Deletion Confirmation")
+            builder.setMessage("Are you sure want to delete this Account?\nThis action cannot be undo")
+            builder.setIcon(android.R.drawable.ic_dialog_alert)
+
+            builder.setPositiveButton("Yes"){dialogInterface, which ->
+                deleteAccount()
+
+            }
+
+            builder.setNeutralButton("Cancel"){dialogInterface , which ->
+            }
+            val alertDialog: AlertDialog = builder.create()
+            alertDialog.setCancelable(false)
+            alertDialog.show()
         }
     }
 
@@ -61,7 +74,6 @@ class UserProfile : AppCompatActivity() {
 
     private fun dataInit() {
         val data = userData[0]
-//        Toast.makeText(this, userData.toString(), Toast.LENGTH_LONG).show()
         Log.i("User Profile", userData.toString())
         user_profile_username.setText(data.userName)
         user_profile_password.setText(data.userPassword)
@@ -69,7 +81,8 @@ class UserProfile : AppCompatActivity() {
         user_profile_email.setText(data.userEmail)
         user_profile_fname.setText(data.userFName)
         user_profile_lname.setText(data.userLName)
-//        user_profile_gender_rg.check()
+        Log.i("User gender", data.userGender)
+        user_profile_gender_rg.check(if (data.userGender == "M") 1 else 2)  // Bug in second view profile -> radio button not checked
 //        user_profile_ppicture.setImageURI()
 
     }
@@ -111,7 +124,7 @@ class UserProfile : AppCompatActivity() {
                         Toast.makeText(applicationContext, response?.getString("message"), Toast.LENGTH_SHORT).show()
 
                         if (response?.getString("message")?.contains("successfully")!!){
-                            this@UserProfile.finish()
+                            Log.i("User profile update", response.toString())
                         }
                     }
 
@@ -123,7 +136,6 @@ class UserProfile : AppCompatActivity() {
                 })
         }
         processRequest()
-        DataPrep().FetchUserData()
     }
 
     private fun deleteAccount() {  // Delete account of current user
@@ -142,7 +154,17 @@ class UserProfile : AppCompatActivity() {
                         Toast.makeText(applicationContext, response?.getString("message"), Toast.LENGTH_SHORT).show()
 
                         if (response?.getString("message")?.contains("successfully")!!){
-                            this@UserProfile.finish()
+//                            this@UserProfile.finish()
+                            // Reset App state
+                            SESSION_LOGIN = false
+                            SESSION_LOGIN_DT = ""
+                            SESSION_USER_ID = ""
+                            SESSION_CONTACT_TYPE_DATA_FETCH = false
+                            SESSION_USER_DATA_FETCH = false
+                            SESSION_CONTACT_DATA_FETCH = false
+                            SINGLE_FILES = ""
+
+                            startActivity(Intent(this@UserProfile, MainActivity::class.java))
                         }
                     }
 
@@ -155,6 +177,4 @@ class UserProfile : AppCompatActivity() {
         }
         processRequest()
     }
-
-
 }

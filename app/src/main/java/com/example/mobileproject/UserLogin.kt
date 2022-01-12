@@ -33,10 +33,12 @@ class UserLogin : AppCompatActivity() {
 
     private fun loginValidation(){  // Validate login credential (READ)
         // Login data prep
-//        val usernameV = login_username.text.toString()
-//        val passwordV = login_password.text.toString()
-        val usernameV = "hedef"
-        val passwordV = "hedef"
+        val usernameV = login_username.text.toString()
+        val passwordV = login_password.text.toString()
+
+        // Pre-defined login credential to skip login, please comment both variable above
+//        val usernameV = "superadmin"
+//        val passwordV = "superadminpw"
 
         fun processRequest() {
             // Status info
@@ -54,7 +56,7 @@ class UserLogin : AppCompatActivity() {
                     override fun onResponse(response: JSONObject?) {
                         val jsonArray = response?.optJSONArray("result")
                         if (jsonArray?.length() == 0) {
-                            Toast.makeText(applicationContext, "Login Failed", Toast.LENGTH_SHORT)
+                            Toast.makeText(applicationContext, "Login Failed, Please Enter Correct Username and Password", Toast.LENGTH_SHORT)
                                 .show()
                             loading.dismiss()
                         } else {
@@ -83,6 +85,7 @@ class UserLogin : AppCompatActivity() {
                             }
                             SESSION_LOGIN = true
                             SESSION_USER_DATA_FETCH = true
+                            startActivity(Intent(this@UserLogin, MainActivity::class.java))
                         }
                         Log.i("UserData: ", UserData::userName.toString())
                     }
@@ -101,9 +104,5 @@ class UserLogin : AppCompatActivity() {
         if (!SESSION_LOGIN) {
             processRequest()
         }
-//        Log.i("SESSION USER LOGIN", SESSION_LOGIN.toString())
-//        Log.i("SESSION USER ID", SESSION_USER_ID)
-//        Log.i("SESSION USER DATA", userData.toString())
-        startActivity(Intent(this, MainActivity::class.java))
     }
 }
